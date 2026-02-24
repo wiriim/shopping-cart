@@ -1,0 +1,27 @@
+.navbar{
+    display: flex;
+    border-bottom: 1px solid #F7F8F0;
+    height: 50px;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    background-color: #2e4d65;
+}
+
+a{
+    display: block;
+    text-decoration: none;
+    width: 70px;
+    text-align: center;
+    color: white;
+}
+
+a:hover{
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.cartLength{
+    font-size: .7rem;
+    color: gold;
+}

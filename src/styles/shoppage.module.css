@@ -1,0 +1,55 @@
+.shopPage{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product{
+    background-color: #2e4d65;
+    border: 1px solid white;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.product img{
+    max-width: 270px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.title{
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.price{
+    color: gold;
+}
+
+.description{
+    font-size: .9rem;
+}
+
+.product:hover{
+    transform: translateY(-5px);
+    border: 2px solid white;
+}
+
+.inputForm{
+    flex: 1;
+    margin-top: 10px;
+    display: flex;
+    align-items: end;
+}
+
+.inputForm >*{
+    height: 30px;
+    padding: 5px;
+    font-size: .7rem;
+}

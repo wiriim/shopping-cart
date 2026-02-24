@@ -1,33 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Navbar from './components/Navbar'
+import { Outlet } from 'react-router'
+import { useState, useEffect } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const URL = 'https://fakestoreapi.com/products';
+  const [products, setProducts] = useState(null);
+  const [cart, setCart] = useState([]);
 
+  useEffect(() => {
+      async function fetchProducts(){
+        const response = await fetch(URL);
+        const allProducts = await response.json();
+        const slicedProducts = allProducts.slice(0, 8);
+        console.log(slicedProducts); 
+        setProducts(slicedProducts);
+      }
+
+      fetchProducts();
+  }, [])
+
+  function addToCart(product){
+    let updatedCart = [...cart];
+    //check if product with title x is in existing cart
+    if (updatedCart.some(prod => prod.title == product.title)){
+      updatedCart.map(prod => prod.title == product.title 
+        ? prod.amount += product.amount 
+        : null);
+    }
+    else{
+      updatedCart.push(product);
+    }
+    //if yes update cart with new cart that has updated amount
+    //else update cart with new item and amount
+    setCart(updatedCart);
+    console.log(updatedCart);
+  }
+  
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Navbar cart={cart}/>
+      <Outlet context={[products, addToCart]}/>
     </>
   )
 }
