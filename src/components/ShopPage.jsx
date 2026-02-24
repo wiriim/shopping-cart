@@ -2,12 +2,14 @@ import { useOutletContext } from "react-router";
 import styles from '../styles/shoppage.module.css';
 
 export default function ShopPage(){
-    const [products, addToCart] = useOutletContext();
+    const {products, addToCart} = useOutletContext();
 
     function getProductToAdd(e){
         const amount = parseInt(e.target.previousElementSibling.value);
         const title = e.target.parentElement.dataset.title;
-        const product = {amount, title};
+        const image = e.target.parentElement.parentElement.firstElementChild.src;
+        const price = e.target.parentElement.parentElement.children[2].textContent;
+        const product = {amount, title, image, price};
         return product
     }
     return(
@@ -20,10 +22,10 @@ export default function ShopPage(){
                         <p className={styles.title}>{p.title}</p>
                         <p className={styles.price}>${p.price}</p>
                         <p className={styles.description}>{p.description}</p>
-                        <div className={styles.inputForm} data-title={p.title}>
-                            <input type="number" />     
+                        <form className={styles.inputForm} data-title={p.title} onSubmit={(e) => e.preventDefault()}>
+                            <input type="number" min="1"/>
                             <button onClick={(e) => addToCart(getProductToAdd(e))}>Add To Cart</button>    
-                        </div>
+                        </form>
                     </div>
                 )}
             </div>

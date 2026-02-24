@@ -22,7 +22,6 @@ function App() {
 
   function addToCart(product){
     let updatedCart = [...cart];
-    //check if product with title x is in existing cart
     if (updatedCart.some(prod => prod.title == product.title)){
       updatedCart.map(prod => prod.title == product.title 
         ? prod.amount += product.amount 
@@ -31,16 +30,26 @@ function App() {
     else{
       updatedCart.push(product);
     }
-    //if yes update cart with new cart that has updated amount
-    //else update cart with new item and amount
-    setCart(updatedCart);
-    console.log(updatedCart);
+    if (!isNaN(product.amount))
+      setCart(updatedCart);
+  }
+
+  function removeFromCart(product){
+    let updatedCart = [...cart];
+    updatedCart.map(prod => prod.title == product.title 
+      ? prod.amount -= product.amount 
+      : null)
+
+    updatedCart = updatedCart.filter(prod => prod.amount != 0);
+
+    if (!isNaN(product.amount))
+      setCart(updatedCart);
   }
   
   return (
     <>
       <Navbar cart={cart}/>
-      <Outlet context={[products, addToCart]}/>
+      <Outlet context={{products, addToCart, cart, removeFromCart}}/>
     </>
   )
 }

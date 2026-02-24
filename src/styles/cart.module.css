@@ -1,4 +1,4 @@
-.shopPage{
+.cartPage{
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -8,7 +8,7 @@
 .product{
     background-color: #2e4d65;
     border: 1px solid white;
-    max-width: 280px;
+    width: 280px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,31 +24,17 @@
 
 .title{
     font-weight: bold;
-    margin: 10px 0;
+    margin: 20px 0 0 0;
 }
 
 .price{
     color: gold;
 }
 
-.description{
-    font-size: .9rem;
-}
-
-.product:hover{
-    transform: translateY(-5px);
-    border: 2px solid white;
-}
-
-.inputForm{
+.more{
+    margin: 7px 0;
     flex: 1;
-    margin-top: 10px;
     display: flex;
-    align-items: end;
-}
-
-.inputForm >*{
-    height: 30px;
-    padding: 5px;
-    font-size: .7rem;
+    flex-direction: column;
+    justify-content: end;
 }

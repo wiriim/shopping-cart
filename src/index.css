@@ -24,3 +24,10 @@
 input, button{
   font-family: "Montserrat", sans-serif;
 }
+
+
+button{
+  margin: 8px 0 0 0;
+  background-color: #2e4d65;
+  cursor: pointer;
+}
